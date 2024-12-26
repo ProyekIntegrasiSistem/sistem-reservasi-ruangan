@@ -1,64 +1,79 @@
+/* === Container Utama Dashboard === */
 .dashboard-container {
   padding: 20px;
 }
 
+/* === Container Cards === */
+/* Mengatur tampilan grid untuk card di dashboard */
 .dashboard-cards-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* Menampilkan 5 card dalam satu baris */
-  gap: 20px;
-  margin-bottom: 30px;
+  gap: 20px; /* Memberikan jarak antar card */
+  margin-bottom: 30px; /* Memberikan jarak antara cards dan tabel */
 }
 
+/* === Styling Cards === */
+/* Memberikan styling pada card */
 .card {
-  background-color: #f8f9fa;
+  background-color: #f8f9fa; 
   padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  border-radius: 6px; /* Membuat sudut melengkung */
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); 
+  text-align: center; 
   font-size: 1rem;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out; /* Efek transisi untuk hover */
 }
 
+/* Efek hover untuk card */
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Card sedikit membesar saat dihover */
 }
 
+/* Styling teks angka pada card */
 .card h1 {
   font-size: 2rem;
-  color: #333;
+  color: #333; 
 }
 
+/* === Container Tabel Dashboard === */
+/* Memberikan margin atas untuk tabel di dashboard */
 .dashboard-table-container {
   margin-top: 20px;
 }
 
+/* === Tabel Styling === */
+/* Memberikan styling dasar untuk tabel */
 .table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: white;
+  width: 100%; /* Tabel memenuhi lebar container */
+  border-collapse: collapse; /* Menghilangkan spasi antar border */
+  background-color: white; 
 }
 
+/* Header tabel */
 .table thead th {
-  background-color: #f1f1f1;
-  text-align: center;
-  padding: 10px;
+  background-color: #f1f1f1; 
+  text-align: center; 
+  padding: 10px; /* Padding untuk header */
 }
 
+/* Isi tabel */
 .table tbody td {
-  text-align: center;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  color: #333;
+  text-align: center; /* Teks rata tengah */
+  padding: 10px; /* Padding untuk isi */
+  border-bottom: 1px solid #ddd; /* Border bawah */
+  color: #333; 
 }
 
+/* === Link untuk Action di Tabel === */
+/* Styling untuk link pada kolom action */
 .action-link {
-  color: #333;
-  text-decoration: none;
-  transition: text-decoration 0.2s ease-in-out;
-  font-weight: normal;
+  color: #333; 
+  text-decoration: none; /* Menghilangkan garis bawah */
+  transition: text-decoration 0.2s ease-in-out; /* Efek transisi */
+  font-weight: normal; /* Teks normal */
 }
 
+/* Efek hover untuk link action */
 .action-link:hover {
-  text-decoration: underline;
+  text-decoration: underline; 
 }
-
