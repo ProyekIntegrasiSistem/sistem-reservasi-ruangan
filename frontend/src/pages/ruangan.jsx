@@ -14,6 +14,7 @@ function Ruangan() {
 
   const [formData, setFormData] = useState({ id: null, nama: '', deskripsi: '' }); // Data untuk form tambah/edit
   const [isEditing, setIsEditing] = useState(false); // Menentukan apakah sedang mengedit data
+  const [searchQuery, setSearchQuery] = useState(""); // Query pencarian
 
   // Fungsi untuk menangani perubahan pada input form
   const handleInputChange = (e) => {
@@ -66,6 +67,11 @@ function Ruangan() {
     setRuanganList(ruanganList.filter((item) => item.id !== id));
   };
 
+  // Fungsi untuk pencarian
+  const filteredRuanganList = ruanganList.filter((ruangan) =>
+    ruangan.nama.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div>
       <Navbar />
@@ -89,6 +95,8 @@ function Ruangan() {
             type="text"
             placeholder="Search"
             className="search-input"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)} // Mengatur query pencarian
           />
         </div>
 
@@ -102,7 +110,7 @@ function Ruangan() {
             </tr>
           </thead>
           <tbody>
-            {ruanganList.map((ruangan, index) => (
+            {filteredRuanganList.map((ruangan, index) => (
               <tr key={index}>
                 <td>{ruangan.nama}</td>
                 <td>{ruangan.deskripsi}</td>
@@ -148,8 +156,8 @@ function Ruangan() {
               onChange={handleInputChange}
             />
             <div className="modal-actions">
-            <button className="cancel-button" onClick={closeModal}> Cancel </button>
-            <button className="save-button" onClick={handleSave}> Simpan </button>
+              <button className="cancel-button" onClick={closeModal}> Cancel </button>
+              <button className="save-button" onClick={handleSave}> Simpan </button>
             </div>
           </div>
         </div>

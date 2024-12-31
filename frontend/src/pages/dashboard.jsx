@@ -57,14 +57,14 @@ function Dashboard() {
                 <td>Aula Auditorium</td>
                 <td>Disetujui</td>
                 <td>24 Nov 2024</td>
-                <td>HMJ Teknik Informatika</td>
+                <td>HIMAPRODI Teknologi Informasi</td>
                 <td>Event Jurusan</td>
               </tr>
               <tr>
                 <td>Ruangan 001</td>
                 <td>Belum Dikonfirmasi</td>
                 <td>24 Nov 2024</td>
-                <td>HMJ Manajemen</td>
+                <td>HIMAPRODI Manajemen</td>
                 <td>Event Jurusan</td>
               </tr>
             </tbody>

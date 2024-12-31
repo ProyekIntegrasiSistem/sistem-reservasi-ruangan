@@ -1,0 +1,60 @@
+/* Container Utama */
+.pinjaman-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  /* Judul Halaman */
+  .page-title {
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Filter dan Search */
+  .filter-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .status-dropdown, .search-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+  }
+  
+  /* Tabel */
+  .pinjaman-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .pinjaman-table th,
+  .pinjaman-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .pinjaman-table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+  
+  .pinjaman-table tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+
+  /* Action Link */
+  
+  .action-link {
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .action-link:hover {
+    text-decoration: underline;
+  }
