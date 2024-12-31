@@ -5,14 +5,14 @@ import './Ruangan.css';
 function Ruangan() {
   const [showModal, setShowModal] = useState(false); // Mengelola state modal
   const [ruanganList, setRuanganList] = useState([
-    { nama: "Aula Auditorium", deskripsi: "Deskripsi Aula Auditorium" },
-    { nama: "Ruangan 001", deskripsi: "Ruangan Kelas 001" },
-    { nama: "Ruangan 002", deskripsi: "Ruangan Kelas 002" },
-    { nama: "Ruangan 003", deskripsi: "Ruangan Kelas 003" },
-    { nama: "Ruangan 004", deskripsi: "Ruangan Kelas 004" },
+    { id: 1, nama: "Aula Auditorium", deskripsi: "Deskripsi Aula Auditorium" },
+    { id: 2, nama: "Ruangan 001", deskripsi: "Ruangan Kelas 001" },
+    { id: 3, nama: "Ruangan 002", deskripsi: "Ruangan Kelas 002" },
+    { id: 4, nama: "Ruangan 003", deskripsi: "Ruangan Kelas 003" },
+    { id: 5, nama: "Ruangan 004", deskripsi: "Ruangan Kelas 004" },
   ]); // Placeholder untuk data ruangan
 
-  const [formData, setFormData] = useState({ nama: '', deskripsi: '' }); // Data untuk form tambah/edit
+  const [formData, setFormData] = useState({ id: null, nama: '', deskripsi: '' }); // Data untuk form tambah/edit
   const [isEditing, setIsEditing] = useState(false); // Menentukan apakah sedang mengedit data
 
   // Fungsi untuk menangani perubahan pada input form
@@ -26,20 +26,23 @@ function Ruangan() {
     if (isEditing) {
       setRuanganList(
         ruanganList.map((item) =>
-          item.nama === formData.nama ? formData : item
+          item.id === formData.id ? formData : item
         )
       );
     } else {
-      setRuanganList([...ruanganList, formData]);
+      setRuanganList([
+        ...ruanganList,
+        { id: Date.now(), ...formData }, // Tambahkan ID unik saat menambah
+      ]);
     }
     setShowModal(false);
-    setFormData({ nama: '', deskripsi: '' });
+    setFormData({ id: null, nama: '', deskripsi: '' });
     setIsEditing(false);
   };
 
   // Fungsi untuk membuka modal tambah
   const openAddModal = () => {
-    setFormData({ nama: '', deskripsi: '' }); // Reset form
+    setFormData({ id: null, nama: '', deskripsi: '' });
     setShowModal(true);
     setIsEditing(false);
   };
@@ -54,13 +57,13 @@ function Ruangan() {
   // Fungsi untuk menutup modal
   const closeModal = () => {
     setShowModal(false);
-    setFormData({ nama: '', deskripsi: '' });
+    setFormData({ id: null, nama: '', deskripsi: '' });
     setIsEditing(false);
   };
 
   // Fungsi untuk menghapus data
-  const handleDelete = (nama) => {
-    setRuanganList(ruanganList.filter((item) => item.nama !== nama));
+  const handleDelete = (id) => {
+    setRuanganList(ruanganList.filter((item) => item.id !== id));
   };
 
   return (
@@ -112,7 +115,7 @@ function Ruangan() {
                   </span>
                   <span
                     className="delete-action"
-                    onClick={() => handleDelete(ruangan.nama)}
+                    onClick={() => handleDelete(ruangan.id)}
                   >
                     Delete
                   </span>
