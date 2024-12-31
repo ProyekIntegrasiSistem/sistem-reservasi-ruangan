@@ -50,7 +50,6 @@ function Dashboard() {
                 <th>Tanggal Pinjam</th>
                 <th>Peminjam</th>
                 <th>Perihal</th>
-                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -60,9 +59,6 @@ function Dashboard() {
                 <td>24 Nov 2024</td>
                 <td>HMJ Teknik Informatika</td>
                 <td>Event Jurusan</td>
-                <td>
-                <a href="#" className="action-link">Edit</a>
-                </td>
               </tr>
               <tr>
                 <td>Ruangan 001</td>
@@ -70,9 +66,6 @@ function Dashboard() {
                 <td>24 Nov 2024</td>
                 <td>HMJ Manajemen</td>
                 <td>Event Jurusan</td>
-                <td>
-                <a href="#" className="action-link">Edit</a>
-                </td>
               </tr>
             </tbody>
           </table>
