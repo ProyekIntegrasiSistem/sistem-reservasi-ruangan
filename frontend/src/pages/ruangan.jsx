@@ -138,30 +138,42 @@ function Ruangan() {
       {showModal && (
         <div className="modal-container">
           <div className="modal-content">
-            <h3>{isEditing ? 'Edit Ruangan' : 'Tambah Ruangan'}</h3>
-            <label>Nama Ruangan</label>
-            <input
-              type="text"
-              name="nama"
-              value={formData.nama}
-              placeholder="ex. Ruangan 001"
-              onChange={handleInputChange}
-            />
-            <label>Deskripsi Ruangan</label>
-            <input
-              type="text"
-              name="deskripsi"
-              value={formData.deskripsi}
-              placeholder="ex. Deskripsi Ruangan"
-              onChange={handleInputChange}
-            />
-            <div className="modal-actions">
-              <button className="cancel-button" onClick={closeModal}> Cancel </button>
-              <button className="save-button" onClick={handleSave}> Simpan </button>
+            <div className="modal-header">
+              <h3>{isEditing ? 'Edit Ruangan' : 'Tambah Ruangan'}</h3>
             </div>
-          </div>
+            <div className="modal-form-container">
+              <div className="modal-form-group">
+                <label htmlFor="namaRuangan">Nama Ruangan <span style={{ color: 'red' }}>*</span></label>
+                <input
+                id="namaRuangan"
+                type="text"
+                name="nama"
+                value={formData.nama}
+                placeholder="ex. Ruangan 001"
+                onChange={handleInputChange}
+                />
+              </div>
+              
+              <div className="modal-form-group">
+                <label htmlFor="deskripsiRuangan">Deskripsi Ruangan</label>
+                <input
+                id="deskripsiRuangan"
+                type="text"
+                name="deskripsi"
+                value={formData.deskripsi}
+                placeholder="ex. Deskripsi Ruangan"
+                onChange={handleInputChange}
+                />
+              </div>
+            </div>
+            
+            <div className="modal-actions">
+              <button className="cancel-button" onClick={closeModal}>Cancel</button>
+              <button className="save-button" onClick={handleSave}>Simpan</button>
+            </div>
         </div>
-      )}
+      </div>
+    )}
     </div>
   );
 }
