@@ -1,12 +1,14 @@
-require('dotenv').config();
+// require('dotenv').config(); Load konfigurasi dari .env
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// import routes
 const userRoutes = require('./routes/users');
 const roomRoutes = require('./routes/rooms');
 const reservationRoutes = require('./routes/reservations');
 
+// inisialisasi Express
 const app = express();
 
 // Middleware
