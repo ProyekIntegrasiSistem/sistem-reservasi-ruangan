@@ -1,15 +1,22 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import './login.css'
-import loginImage from 'src/assets/ruanganLogin.jpg'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import './login.css';
+import loginImage from 'src/assets/ruanganLogin.jpg';
 
 function Login() {
-  // Navigasi ke Dashboard
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate('/dashboard')
+    navigate('/dashboard'); // Navigasi ke dashboard
+  };
+
+  const handleLupaPassword = () => {
+    navigate('/lupa-password'); // Navigasi ke halaman lupa password
+  };
+
+  const handleRegister = () => {
+    navigate('/register'); // Navigasi ke halaman register
   };
 
   return (
@@ -42,13 +49,23 @@ function Login() {
               <input type="password" id="password" required />
             </div>
 
-            {/* Tombol Log in*/}
+            {/* Tombol Log in */}
             <button type="submit" className="login-button">Log In</button>
           </form>
+
+          {/* Tautan Lupa Password dan Register */}
+          <div className="login-links">
+            <span onClick={handleLupaPassword} className="link">
+              Forgot Password?
+            </span>
+            <span onClick={handleRegister} className="link">
+              Register
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

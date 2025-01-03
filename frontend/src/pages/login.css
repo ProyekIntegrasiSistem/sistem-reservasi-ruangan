@@ -113,3 +113,22 @@ body {
 .login-button:hover {
   background-color: #003a5a; 
 }
+
+/* Styling tautan lupa password dan register */
+.login-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.link {
+  color: #003a5a;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
