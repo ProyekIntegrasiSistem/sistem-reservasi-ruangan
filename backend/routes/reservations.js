@@ -1,10 +1,10 @@
 const express = require('express');
+const { getAllReservations, createReservation, updateReservation, deleteReservation } = require('../controllers/reservationController');
 const router = express.Router();
 
-// Import controller
-const { getAllReservations } = require('../controllers/reservationController');
-
-// Endpoint untuk mendapatkan semua reservasi
 router.get('/', getAllReservations);
+router.post('/', createReservation);
+router.put('/:id', updateReservation);
+router.delete('/:id', deleteReservation);
 
 module.exports = router;
