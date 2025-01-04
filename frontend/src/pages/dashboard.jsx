@@ -1,78 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
-import './dashboard.css'
+import api from '../services/api';
+import './dashboard.css';
 
 function Dashboard() {
-  return (
-    <div>
-      {/* Komponen Navbar */}
-      <Navbar />
+    const [stats, setStats] = useState({
+        totalRooms: 0,
+        availableRooms: 0,
+        totalReservations: 0,
+        approvedReservations: 0,
+        canceledReservations: 0,
+    });
 
-      {/* Container Dashboard */}
-      <div className="dashboard-container">
-        {/* Bagian Card */}
-        <div className="dashboard-cards-container">
-          <div className="card">
-            <h5>Total Ruangan</h5>
-            {/* Placeholder data, integrasi dengan backend */}
-            <h1><i className="bi bi-door-closed"></i> 20</h1>
-          </div>
-          <div className="card">
-            <h5>Jumlah Ruangan Kosong</h5>
-            {/* Placeholder data, integrasi dengan backend */}
-            <h1><i className="bi bi-door-open"></i> 15</h1>
-          </div>
-          <div className="card">
-            <h5>Total Peminjam</h5>
-            {/* Placeholder data, integrasi dengan backend */}
-            <h1><i className="bi bi-person"></i> 10</h1>
-          </div>
-          <div className="card">
-            <h5>Total Disetujui</h5>
-            {/* Placeholder data, integrasi dengan backend */}
-            <h1><i className="bi bi-check-circle"></i> 5</h1>
-          </div>
-          <div className="card">
-            <h5>Total Cancel</h5>
-            {/* Placeholder data, integrasi dengan backend */}
-            <h1><i className="bi bi-x-circle"></i> 5</h1>
-          </div>
-        </div>
+    useEffect(() => {
+        // Fetch data untuk statistik
+        api.get('/dashboard/stats')
+            .then((response) => {
+                setStats(response.data); // Update statistik dari backend
+            })
+            .catch((error) => {
+                console.error('Error fetching dashboard stats:', error);
+            });
+    }, []);
 
-        {/* Table Data Pinjaman Ruangan */}
-        <div className="dashboard-table-container">
-          <h4>Pinjaman Ruangan Terakhir</h4>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Ruangan</th>
-                <th>Status</th>
-                <th>Tanggal Pinjam</th>
-                <th>Peminjam</th>
-                <th>Perihal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Aula Auditorium</td>
-                <td>Disetujui</td>
-                <td>24 Nov 2024</td>
-                <td>HIMAPRODI Teknologi Informasi</td>
-                <td>Event Jurusan</td>
-              </tr>
-              <tr>
-                <td>Ruangan 001</td>
-                <td>Belum Dikonfirmasi</td>
-                <td>24 Nov 2024</td>
-                <td>HIMAPRODI Manajemen</td>
-                <td>Event Jurusan</td>
-              </tr>
-            </tbody>
-          </table>
+    return (
+        <div>
+            <Navbar />
+            <div className="dashboard-container">
+                <div className="dashboard-cards-container">
+                    <div className="card">
+                        <h5>Total Ruangan</h5>
+                        <h1><i className="bi bi-door-closed"></i> {stats.totalRooms}</h1>
+                    </div>
+                    <div className="card">
+                        <h5>Jumlah Ruangan Kosong</h5>
+                        <h1><i className="bi bi-door-open"></i> {stats.availableRooms}</h1>
+                    </div>
+                    <div className="card">
+                        <h5>Total Peminjam</h5>
+                        <h1><i className="bi bi-person"></i> {stats.totalReservations}</h1>
+                    </div>
+                    <div className="card">
+                        <h5>Total Disetujui</h5>
+                        <h1><i className="bi bi-check-circle"></i> {stats.approvedReservations}</h1>
+                    </div>
+                    <div className="card">
+                        <h5>Total Cancel</h5>
+                        <h1><i className="bi bi-x-circle"></i> {stats.canceledReservations}</h1>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Dashboard;

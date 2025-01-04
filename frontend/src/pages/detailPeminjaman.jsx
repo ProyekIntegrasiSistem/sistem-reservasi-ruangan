@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Navbar from '../components/navbar'; 
-import './detailPeminjaman.css'; 
+import Navbar from '../components/navbar';
+import './detailPeminjaman.css';
 
 function DetailPeminjaman() {
   const location = useLocation();
   const reservation = location.state?.reservation;
+
+  // Ambil role dari localStorage
+  const role = localStorage.getItem('role');
 
   if (!reservation) {
     return <p>Data tidak ditemukan. Silakan kembali ke halaman sebelumnya.</p>;
@@ -17,7 +20,7 @@ function DetailPeminjaman() {
     tanggalReservasi: reservation.tanggalReservasi,
     tanggalBerakhir: reservation.tanggalSelesai,
     status: reservation.status,
-    perihal: 'Peminjaman untuk kegiatan seminar',
+    perihal: reservation.perihal || '',
   });
 
   const handleInputChange = (e) => {
@@ -30,8 +33,12 @@ function DetailPeminjaman() {
   };
 
   const handleSave = () => {
-    console.log("Data yang disimpan:", formData);
-    alert("Data berhasil disimpan!");
+    if (role === 'staff') {
+      console.log('Data yang disimpan:', formData);
+      alert('Data berhasil disimpan!');
+    } else {
+      alert('Anda tidak memiliki izin untuk menyimpan perubahan.');
+    }
   };
 
   return (
@@ -48,6 +55,7 @@ function DetailPeminjaman() {
               name="ruangan"
               value={formData.ruangan}
               onChange={handleInputChange}
+              disabled={role !== 'staff'} // Disable untuk user
             />
           </div>
           <div className="form-group">
@@ -58,6 +66,7 @@ function DetailPeminjaman() {
               name="peminjam"
               value={formData.peminjam}
               onChange={handleInputChange}
+              disabled={role !== 'staff'} // Disable untuk user
             />
           </div>
           <div className="form-group">
@@ -68,6 +77,7 @@ function DetailPeminjaman() {
               name="tanggalReservasi"
               value={formData.tanggalReservasi}
               onChange={handleInputChange}
+              disabled={role !== 'staff'} // Disable untuk user
             />
           </div>
           <div className="form-group">
@@ -78,6 +88,7 @@ function DetailPeminjaman() {
               name="tanggalBerakhir"
               value={formData.tanggalBerakhir}
               onChange={handleInputChange}
+              disabled={role !== 'staff'} // Disable untuk user
             />
           </div>
           <div className="form-group">
@@ -87,6 +98,7 @@ function DetailPeminjaman() {
               name="status"
               value={formData.status}
               onChange={handleInputChange}
+              disabled={role !== 'staff'} // Disable untuk user
             >
               <option value="Belum Terkonfirmasi">Belum Terkonfirmasi</option>
               <option value="Disetujui">Disetujui</option>
@@ -101,15 +113,18 @@ function DetailPeminjaman() {
               rows="4"
               value={formData.perihal}
               onChange={handleInputChange}
+              disabled={role !== 'staff'} // Disable untuk user
             ></textarea>
           </div>
           <div className="form-actions">
             <button type="button" className="cancel-button" onClick={handleCancel}>
               Cancel
             </button>
-            <button type="button" className="save-button" onClick={handleSave}>
-              Simpan
-            </button>
+            {role === 'staff' && (
+              <button type="button" className="save-button" onClick={handleSave}>
+                Simpan
+              </button>
+            )}
           </div>
         </form>
       </div>

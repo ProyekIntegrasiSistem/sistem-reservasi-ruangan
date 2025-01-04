@@ -7,13 +7,15 @@ const cors = require('cors');
 const userRoutes = require('./routes/users');
 const roomRoutes = require('./routes/rooms');
 const reservationRoutes = require('./routes/reservations');
+const authRoutes = require('./routes/auth');
 
 // inisialisasi Express
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({origin: 'http://localhost:5173'}));
 app.use(bodyParser.json());
+app.use('/api/auth', authRoutes);
 
 // Routes
 app.use('/api/users', userRoutes);

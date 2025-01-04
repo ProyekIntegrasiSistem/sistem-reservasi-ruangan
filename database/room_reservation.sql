@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Jan 2025 pada 12.52
+-- Waktu pembuatan: 04 Jan 2025 pada 07.44
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -46,7 +46,8 @@ CREATE TABLE `reservations` (
   `room_id` int(11) NOT NULL,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
-  `status` enum('pending','approved','canceled') DEFAULT 'pending'
+  `status` enum('pending','approved','canceled') DEFAULT 'pending',
+  `purpose` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -63,6 +64,13 @@ CREATE TABLE `rooms` (
   `availability` enum('available','not available') DEFAULT 'available'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `rooms`
+--
+
+INSERT INTO `rooms` (`room_id`, `name`, `capacity`, `location`, `availability`) VALUES
+(1, 'ruangan 001', 40, 'Gedung A', '');
+
 -- --------------------------------------------------------
 
 --
@@ -73,9 +81,19 @@ CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('admin') NOT NULL
+  `role` enum('admin','user') DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `email`, `username`, `password`, `role`) VALUES
+(1, 'adi saputra', 'putujackson0@gmail.com', 'narutompel', 'astungk4r4', 'admin'),
+(2, 'alicia', 'alicialfia@gmail.com', 'alicia', 'al1c1a', 'admin'),
+(3, 'cantika', 'cantikawijay@gmail.com', 'cantika', 'c4nt1ka', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -129,13 +147,13 @@ ALTER TABLE `reservations`
 -- AUTO_INCREMENT untuk tabel `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

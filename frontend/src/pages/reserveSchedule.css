@@ -1,0 +1,68 @@
+reserveSchedule.jsx
+
+/* Container Utama */
+.reserve-schedule-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  /* Filter dan Search */
+  .filter-search-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .status-dropdown,
+  .date-picker,
+  .search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .status-dropdown {
+    width: 200px;
+  }
+  
+  .date-picker {
+    width: 200px;
+  }
+  
+  .search-input {
+    flex-grow: 1;
+  }
+  
+  /* Tabel Reservasi */
+  .reservation-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .reservation-table th,
+  .reservation-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .reservation-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+  }
+  
+  .reservation-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Action Link */
+  .action-link {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .action-link:hover {
+    text-decoration: underline;
+  }
