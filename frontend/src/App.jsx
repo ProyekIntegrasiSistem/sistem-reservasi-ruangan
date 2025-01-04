@@ -6,6 +6,7 @@ import Pinjaman from './pages/pinjaman.jsx'
 import DetailPeminjaman from './pages/detailPeminjaman.jsx'
 import LupaPassword from './pages/lupaPassword.jsx'
 import Register from './pages/register.jsx'
+import ReserveSchedule from './pages/reserveSchedule.jsx'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/detail" element={<DetailPeminjaman />} />
         <Route path="/lupa-password" element={<LupaPassword />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/reservasi" element={<ReserveSchedule />} />
       </Routes>
     </Router>
   )
