@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 reserveSchedule.jsx
 
+=======
+>>>>>>> 5b183c7a5d8577e5611f2324e12a899a38a09fb8
 /* Container Utama */
 .reserve-schedule-container {
     padding: 20px;
@@ -65,4 +68,9 @@ reserveSchedule.jsx
   
   .action-link:hover {
     text-decoration: underline;
+<<<<<<< HEAD
   }
+=======
+  }
+  
+>>>>>>> 5b183c7a5d8577e5611f2324e12a899a38a09fb8
