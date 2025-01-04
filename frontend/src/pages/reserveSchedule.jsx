@@ -1,21 +1,14 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
 import Navbar from "../components/navbar"; // Pastikan Navbar sudah sesuai untuk pengguna
-=======
-import Navbar from "../components/Navbar"; // Pastikan Navbar sudah sesuai untuk pengguna
->>>>>>> 5b183c7a5d8577e5611f2324e12a899a38a09fb8
 import "./ReserveSchedule.css";
 
 function ReserveSchedule() {
   const [searchQuery, setSearchQuery] = useState(""); // Query pencarian nama peminjam
   const [selectedRoom, setSelectedRoom] = useState(""); // Ruangan yang dipilih dari dropdown
   const [selectedDate, setSelectedDate] = useState(""); // Tanggal yang dipilih dari kalender
-<<<<<<< HEAD
   const handleDetail = (reservation) => {
     navigate('/detail', { state: { reservation } });
   };
-=======
->>>>>>> 5b183c7a5d8577e5611f2324e12a899a38a09fb8
 
   // Data statis sebagai placeholder
   const [reservations] = useState([
@@ -138,8 +131,4 @@ function ReserveSchedule() {
   );
 }
 
-<<<<<<< HEAD
 export default ReserveSchedule;
-=======
-export default ReserveSchedule;
->>>>>>> 5b183c7a5d8577e5611f2324e12a899a38a09fb8
