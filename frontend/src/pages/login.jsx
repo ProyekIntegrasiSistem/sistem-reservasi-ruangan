@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import api from '../services/api'; // Pastikan path sudah benar
-import './login.css';
-import loginImage from 'src/assets/ruanganLogin.jpg';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../services/api"; // Pastikan path sudah benar
+import "./login.css";
+import loginImage from "src/assets/ruanganLogin.jpg";
 
 function Login() {
   const navigate = useNavigate();
-  const [credentials, setCredentials] = useState({ username: '', password: '' });
-  const [errorMessage, setErrorMessage] = useState('');
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,21 +20,23 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post('/auth/login', credentials);
+      const response = await api.post("/auth/login", credentials);
       const { user } = response.data;
 
+      console.log(user.role);
+
       // Simpan role pengguna di localStorage
-      localStorage.setItem('role', user.role);
+      localStorage.setItem("role", user.role);
 
       // Redirect berdasarkan role
-      if (user.role === 'staff') {
-        navigate('/dashboard'); // Halaman Staff
-      } else if (user.role === 'user') {
-        navigate('/reservasi'); // Halaman User
+      if (user.role === "admin") {
+        navigate("dashboard"); // Halaman Staff
+      } else if (user.role === "user") {
+        navigate("/reservasi"); // Halaman User
       }
     } catch (error) {
-      console.error('Login failed:', error.response || error.message);
-      setErrorMessage(error.response?.data?.message || 'Login failed');
+      console.error("Login failed:", error.response || error.message);
+      setErrorMessage(error.response?.data?.message || "Login failed");
     }
   };
 
@@ -77,7 +82,9 @@ function Login() {
             {errorMessage && <p className="error-message">{errorMessage}</p>}
 
             {/* Tombol Login */}
-            <button type="submit" className="login-button">Log In</button>
+            <button type="submit" className="login-button">
+              Log In
+            </button>
           </form>
         </div>
       </div>
