@@ -8,6 +8,7 @@ const userRoutes = require('./routes/users');
 const roomRoutes = require('./routes/rooms');
 const reservationRoutes = require('./routes/reservations');
 const authRoutes = require('./routes/auth');
+const dashboardRoutes = require('./routes/dashboard');
 
 // inisialisasi Express
 const app = express();
@@ -21,6 +22,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/rooms', roomRoutes);
 app.use('/api/reservations', reservationRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;

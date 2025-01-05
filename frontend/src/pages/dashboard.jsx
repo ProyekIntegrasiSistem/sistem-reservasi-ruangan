@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar';
 import api from '../services/api';
 import './dashboard.css';
+import dayjs from 'dayjs';
 
 function Dashboard() {
     const [stats, setStats] = useState({
@@ -11,6 +12,12 @@ function Dashboard() {
         approvedReservations: 0,
         canceledReservations: 0,
     });
+    const [reservations, setReservations] = useState([]);
+
+    // Fungsi untuk memformat tanggal
+    const formatDate = (date) => {
+        return dayjs(date).isValid() ? dayjs(date).format('DD MMM YYYY HH:mm') : 'Invalid Date';
+    };
 
     useEffect(() => {
         // Fetch data untuk statistik
@@ -21,12 +28,21 @@ function Dashboard() {
             .catch((error) => {
                 console.error('Error fetching dashboard stats:', error);
             });
+
+        api.get('/dashboard/reservations')
+            .then((response) => {
+                setReservations(response.data); // Mengisi data tabel
+            })
+            .catch((error) => {
+                console.error('Error fetching reservations:', error);
+            });
     }, []);
 
     return (
         <div>
             <Navbar />
             <div className="dashboard-container">
+            {/* Bagian Card */}
                 <div className="dashboard-cards-container">
                     <div className="card">
                         <h5>Total Ruangan</h5>
@@ -48,6 +64,33 @@ function Dashboard() {
                         <h5>Total Cancel</h5>
                         <h1><i className="bi bi-x-circle"></i> {stats.canceledReservations}</h1>
                     </div>
+                </div>
+
+                {/* Table Data Pinjaman Ruangan */}
+                <div className="dashboard-table-container">
+                    <h4>Pinjaman Ruangan Terakhir</h4>
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Ruangan</th>
+                                <th>Status</th>
+                                <th>Tanggal Pinjam</th>
+                                <th>Peminjam</th>
+                                <th>Perihal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {reservations.map((reservation, index) => (
+                                <tr key={index}>
+                                    <td>{reservation.ruangan}</td>
+                                    <td>{reservation.status}</td>
+                                    <td>{formatDate(reservation.start_time)}</td>
+                                    <td>{reservation.peminjam}</td>
+                                    <td>{reservation.purpose}</td>
+                                </tr>
+                             ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

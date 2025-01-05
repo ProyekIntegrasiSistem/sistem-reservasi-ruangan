@@ -26,8 +26,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        {/* Halaman untuk Staff */}
         <Route
           path="/dashboard"
           element={
@@ -36,6 +34,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* Halaman untuk Staff */}
         <Route
           path="/ruangan"
           element={
