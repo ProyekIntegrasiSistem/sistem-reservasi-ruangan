@@ -21,7 +21,7 @@ function App() {
         <Route
           path="/detail"
           element={
-            <ProtectedRoute allowedRoles={["staff", "user"]}>
+            <ProtectedRoute allowedRoles={["admin", "user"]}>
               <detailPeminjaman />
             </ProtectedRoute>
           }
@@ -31,7 +31,7 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute allowedRoles={["staff", "user"]}>
+            <ProtectedRoute allowedRoles={["admin", "user"]}>
               <Dashboard />
             </ProtectedRoute>
           }
@@ -39,7 +39,7 @@ function App() {
         <Route
           path="/ruangan"
           element={
-            <ProtectedRoute allowedRoles={["staff"]}>
+            <ProtectedRoute allowedRoles={["admin"]}>
               <Ruangan />
             </ProtectedRoute>
           }
@@ -47,7 +47,7 @@ function App() {
         <Route
           path="/pinjaman"
           element={
-            <ProtectedRoute allowedRoles={["staff"]}>
+            <ProtectedRoute allowedRoles={["admin"]}>
               <Pinjaman />
             </ProtectedRoute>
           }
