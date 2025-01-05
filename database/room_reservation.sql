@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Jan 2025 pada 07.44
+-- Waktu pembuatan: 05 Jan 2025 pada 14.36
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -61,15 +61,16 @@ CREATE TABLE `rooms` (
   `name` varchar(100) NOT NULL,
   `capacity` int(11) NOT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `availability` enum('available','not available') DEFAULT 'available'
+  `availability` enum('available','not available') DEFAULT 'available',
+  `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `rooms`
 --
 
-INSERT INTO `rooms` (`room_id`, `name`, `capacity`, `location`, `availability`) VALUES
-(1, 'ruangan 001', 40, 'Gedung A', '');
+INSERT INTO `rooms` (`room_id`, `name`, `capacity`, `location`, `availability`, `description`) VALUES
+(1, 'ruangan 001', 40, 'Gedung A', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -93,7 +94,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `name`, `email`, `username`, `password`, `role`) VALUES
 (1, 'adi saputra', 'putujackson0@gmail.com', 'narutompel', 'astungk4r4', 'admin'),
 (2, 'alicia', 'alicialfia@gmail.com', 'alicia', 'al1c1a', 'admin'),
-(3, 'cantika', 'cantikawijay@gmail.com', 'cantika', 'c4nt1ka', 'admin');
+(3, 'cantika', 'cantikawijay@gmail.com', 'cantika', 'c4nt1ka', 'admin'),
+(5, 'jackson', 'jackson0@gmail.com', 'jackson', 'test123', 'user');
 
 --
 -- Indexes for dumped tables
@@ -153,7 +155,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
