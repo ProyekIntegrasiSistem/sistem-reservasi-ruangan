@@ -5,7 +5,7 @@ export function ProtectedRoute({ children, allowedRoles }) {
     const role = localStorage.getItem('role');
     
     if (!allowedRoles.includes(role)) {
-        return React.createElement(Navigate, { to: "/", replace: true });
+        return React.createElement(Navigate, { to: "/admin/login", replace: true });
         // <Navigate to="/" replace />;
     }
 

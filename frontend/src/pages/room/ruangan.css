@@ -1,0 +1,190 @@
+/* Container utama untuk halaman ruangan */
+.ruangan-container {
+  max-width: 1200px; /* Responsif sesuai layar */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header dan tombol tambah */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+.tambah-button {
+  background-color: #002C47;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.tambah-button:hover {
+  background-color: #003A5A;
+}
+
+/* Dropdown status dan search bar */
+.filter-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.status-dropdown{
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.search-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  flex-grow: 1;
+}
+
+/* Tabel daftar ruangan */
+.ruangan-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ruangan-table th,
+.ruangan-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.ruangan-table th {
+  background-color: #f8f9fa;
+}
+
+.ruangan-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Tombol edit dan delete */
+.edit-action {
+  color: #F08B48;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.delete-action {
+  color: #F00F0F;
+  cursor: pointer;
+}
+
+.edit-action:hover .delete-action:hover {
+  text-decoration: underline;
+}
+
+
+/* Modal */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 253, 253, 0.93); /* Overlay semi-transparan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 450px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.616);
+  font-family: 'Poppins', sans-serif;
+}
+
+.modal-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-header h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #002C47;
+}
+
+.modal-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Jarak antar elemen */
+}
+
+.modal-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-form-group label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.modal-form-group input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Tombol di modal */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cancel-button {
+  background: white;
+  color: #FF4D4D;
+  border: 1px solid #FF4D4D;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background: #FFECEC;
+}
+
+.save-button {
+  background: #002C47;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background: #003A5A;
+}
+
+.text-center {
+  text-align: center;
+}

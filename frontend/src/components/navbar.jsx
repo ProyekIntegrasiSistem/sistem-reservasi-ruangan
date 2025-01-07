@@ -1,9 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import logoImage from 'src/assets/logo.png';
 
-function Navbar() {
+
+
+function Navbar({onActionClick}) {
+    const navigate = useNavigate();
+    const role = localStorage.getItem('role');
+
+    function handleLogout() {
+      localStorage.removeItem("role");
+
+      navigate('/admin/login');
+    }
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light px-4">
           {/* Logo */}
@@ -13,26 +24,35 @@ function Navbar() {
 
           {/* Navigasi */}
           <div className="collapse navbar-collapse">
-            <ul className="navbar-nav">
+            {role && <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link" to="/dashboard"> Dashboard
-                </Link>
+                <Link className="nav-link" to="/admin"> Dashboard </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/ruangan"> Ruangan
-                </Link>
+                <Link className="nav-link" to="/admin/ruangan"> Ruangan </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/pinjaman"> Pinjaman
-                </Link>
+                <Link className="nav-link" to="/admin/pinjaman"> Pinjaman </Link>
               </li>
-            </ul>
+            </ul>}
+            
 
             {/* Tombol Logout */}
-            <button className="btn btn-danger ms-auto"
-            onClick={() => (window.location.href = "/")}>
-              <i className="bi bi-box-arrow-right"></i> Log out
-            </button>
+            {
+              role == 'admin' 
+                ? <button 
+                  className="btn btn-danger ms-auto"
+                  onClick={handleLogout}
+                >
+                  <i className="bi bi-box-arrow-right"></i> Log out
+                </button>
+                : <button
+                  className="btn btn-info ms-auto"
+                  onClick={onActionClick}
+                >
+                  + Pinjam Ruangan
+                </button>
+            }
           </div>
         </nav>
       );

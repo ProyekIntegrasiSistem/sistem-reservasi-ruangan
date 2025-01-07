@@ -23,17 +23,11 @@ function Login() {
       const response = await api.post("/auth/login", credentials);
       const { user } = response.data;
 
-      console.log(user.role);
-
       // Simpan role pengguna di localStorage
       localStorage.setItem("role", user.role);
 
-      // Redirect berdasarkan role
-      if (user.role === "admin") {
-        navigate("dashboard"); // Halaman Staff
-      } else if (user.role === "user") {
-        navigate("/reservasi"); // Halaman User
-      }
+      
+      navigate("/admin");
     } catch (error) {
       console.error("Login failed:", error.response || error.message);
       setErrorMessage(error.response?.data?.message || "Login failed");

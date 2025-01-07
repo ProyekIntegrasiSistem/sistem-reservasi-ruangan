@@ -57,3 +57,8 @@
 .navbar .navbar-nav .nav-link:hover{
   font-weight: bold;
 }
+
+.btn-info {
+  background-color: #002c47 !important;
+  color: white !important;
+}

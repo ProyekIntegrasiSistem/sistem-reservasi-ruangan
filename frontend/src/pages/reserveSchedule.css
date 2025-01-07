@@ -1,11 +1,10 @@
-reserveSchedule.jsx
-
 /* Container Utama */
 .reserve-schedule-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
-  }
+  margin-top: 28px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
   
   /* Filter dan Search */
   .filter-search-container {
@@ -20,6 +19,10 @@ reserveSchedule.jsx
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+  }
+
+  .status-dropdown, .date-picker {
+    margin-right: 10px;
   }
   
   .status-dropdown {
@@ -66,3 +69,7 @@ reserveSchedule.jsx
   .action-link:hover {
     text-decoration: underline;
   }
+
+.text-center {
+  text-align: center;
+}

@@ -1,0 +1,112 @@
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang semi-transparan */
+    display: flex; /* Flexbox untuk pusat */
+    justify-content: center; /* Horizontal center */
+    align-items: center; /* Vertical center */
+    z-index: 1000; /* Pastikan modal di atas konten lainnya */
+  }
+  
+  /* Modal Container */
+  .modal-reservation-container {
+    background-color: #fff;
+    width: 50%; /* Lebar modal */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease; /* Tambahkan animasi */
+  }
+  
+  /* Animasi */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9); /* Awal: lebih kecil */
+    }
+    to {
+      opacity: 1;
+      transform: scale(1); /* Akhir: ukuran normal */
+    }
+  }
+  
+  /* Modal Title */
+  .modal-reservation-title {
+    font-size: 16pt;
+    margin-bottom: 16px !important;
+    text-align: left;
+  }
+  
+  /* Form Groups */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-group label span {
+    color: red;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  /* Modal Buttons */
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end; /* Menyusun tombol ke pojok kanan */
+    gap: 10px; /* Jarak antar tombol */
+    margin-top: 20px;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+  
+  .btn.cancel {
+    background-color: #fff;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+  }
+  
+  .btn.cancel:hover {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .btn.save {
+    background-color: #002c47 !important;
+    color: white !important;
+    border: 1px solid;
+  }
+  
+  .btn.save:hover {
+    background-color: #001f32 !important;
+    color: white !important;
+  }
