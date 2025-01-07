@@ -1,95 +1,77 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
+-- -------------------------------------------------------------
+-- TablePlus 6.2.1(578)
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jan 2025 pada 14.36
--- Versi server: 10.4.27-MariaDB
--- Versi PHP: 8.2.0
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+-- https://tableplus.com/
+--
+-- Database: db_rent_room
+-- Generation Time: 2025-01-07 20:35:36.2000
+-- -------------------------------------------------------------
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Database: `room_reservation`
---
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `activitylogs`
---
-
+DROP TABLE IF EXISTS `activitylogs`;
 CREATE TABLE `activitylogs` (
-  `log_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `action` varchar(255) DEFAULT NULL,
-  `timestamp` datetime DEFAULT current_timestamp()
+  `log_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `action` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `timestamp` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`log_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `reservations`
---
-
+DROP TABLE IF EXISTS `reservations`;
 CREATE TABLE `reservations` (
-  `reservation_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `room_id` int(11) NOT NULL,
+  `reservation_id` int NOT NULL AUTO_INCREMENT,
+  `room_id` int NOT NULL,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
-  `status` enum('pending','approved','canceled') DEFAULT 'pending',
-  `purpose` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `status` enum('pending','approved','canceled') COLLATE utf8mb4_general_ci DEFAULT 'pending',
+  `purpose` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `reserver` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`reservation_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `rooms`
---
-
+DROP TABLE IF EXISTS `rooms`;
 CREATE TABLE `rooms` (
-  `room_id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `capacity` int(11) NOT NULL,
-  `location` varchar(255) DEFAULT NULL,
-  `availability` enum('available','not available') DEFAULT 'available',
-  `description` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `room_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `status` tinyint DEFAULT NULL,
+  PRIMARY KEY (`room_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data untuk tabel `rooms`
---
-
-INSERT INTO `rooms` (`room_id`, `name`, `capacity`, `location`, `availability`, `description`) VALUES
-(1, 'ruangan 001', 40, 'Gedung A', '', NULL);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `users`
---
-
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` enum('admin','user') DEFAULT 'user'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `role` enum('admin','user') COLLATE utf8mb4_general_ci DEFAULT 'user',
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data untuk tabel `users`
---
+INSERT INTO `reservations` (`reservation_id`, `room_id`, `start_time`, `end_time`, `status`, `purpose`, `reserver`) VALUES
+(1, 2, '2025-01-08 08:00:00', '2025-01-08 17:00:00', 'approved', 'Rapat dosen dan dekanan', 'Dosen'),
+(2, 3, '2025-01-09 09:00:00', '2025-01-09 17:00:00', 'canceled', 'Acara jurusan', 'HMJ Akuntansi');
+
+INSERT INTO `rooms` (`room_id`, `name`, `description`, `status`) VALUES
+(1, 'room 001', 'Ruangan Pertama', 0),
+(2, 'room 02', NULL, 1),
+(3, 'room 03', NULL, 1),
+(4, 'room 04', NULL, 1),
+(5, 'room 05', NULL, 1),
+(6, 'room 06', NULL, 1),
+(7, 'room 07', NULL, 0);
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `username`, `password`, `role`) VALUES
 (1, 'adi saputra', 'putujackson0@gmail.com', 'narutompel', 'astungk4r4', 'admin'),
@@ -97,84 +79,12 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `username`, `password`, `role`)
 (3, 'cantika', 'cantikawijay@gmail.com', 'cantika', 'c4nt1ka', 'admin'),
 (5, 'jackson', 'jackson0@gmail.com', 'jackson', 'test123', 'user');
 
---
--- Indexes for dumped tables
---
 
---
--- Indeks untuk tabel `activitylogs`
---
-ALTER TABLE `activitylogs`
-  ADD PRIMARY KEY (`log_id`),
-  ADD KEY `user_id` (`user_id`);
 
---
--- Indeks untuk tabel `reservations`
---
-ALTER TABLE `reservations`
-  ADD PRIMARY KEY (`reservation_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `room_id` (`room_id`);
-
---
--- Indeks untuk tabel `rooms`
---
-ALTER TABLE `rooms`
-  ADD PRIMARY KEY (`room_id`);
-
---
--- Indeks untuk tabel `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
--- AUTO_INCREMENT untuk tabel `activitylogs`
---
-ALTER TABLE `activitylogs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `reservations`
---
-ALTER TABLE `reservations`
-  MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `rooms`
---
-ALTER TABLE `rooms`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `users`
---
-ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
---
-
---
--- Ketidakleluasaan untuk tabel `activitylogs`
---
-ALTER TABLE `activitylogs`
-  ADD CONSTRAINT `activitylogs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-
---
--- Ketidakleluasaan untuk tabel `reservations`
---
-ALTER TABLE `reservations`
-  ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`);
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
