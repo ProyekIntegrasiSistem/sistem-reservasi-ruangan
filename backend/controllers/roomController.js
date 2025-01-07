@@ -2,8 +2,24 @@ const db = require("../config/db");
 
 // GET: Ambil semua ruangan
 const getAllRooms = async (req, res) => {
+  const { status, name } = req.query; 
+
   try {
-    const [rooms] = await db.query("SELECT * FROM Rooms");
+    let query = "SELECT * FROM Rooms";
+    const params = [];
+
+    if (status) {
+      query += " WHERE status = ?";
+      params.push(status);
+    }
+
+    if (name) {
+      query += params.length > 0 ? " AND" : " WHERE";
+      query += " name LIKE ?";
+      params.push(`%${name}%`);
+    }
+
+    const [rooms] = await db.query(query, params);
     res.json(rooms);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -12,11 +28,11 @@ const getAllRooms = async (req, res) => {
 
 // POST: Tambah ruangan baru
 const createRoom = async (req, res) => {
-  const { name, capacity, location, availability, description } = req.body;
+  const { name, description } = req.body;
   try {
     const [result] = await db.query(
-      "INSERT INTO Rooms (name, capacity, location, availability, description) VALUES (?, ?, ?, ?, ?)",
-      [name, capacity, location, availability, description]
+      "INSERT INTO Rooms (name, description, status) VALUES (?, ?, ?)",
+      [name, description, 1]
     );
     res.json({ message: "Room created", roomId: result.insertId });
   } catch (error) {
@@ -27,11 +43,11 @@ const createRoom = async (req, res) => {
 // PUT: Update ruangan
 const updateRoom = async (req, res) => {
   const { id } = req.params;
-  const { name, capacity, location, availability } = req.body;
+  const { name, description } = req.body;
   try {
     await db.query(
-      "UPDATE Rooms SET name = ?, capacity = ?, location = ?, availability = ? WHERE room_id = ?",
-      [name, capacity, location, availability, id]
+      "UPDATE Rooms SET name = ?, description = ? WHERE room_id = ?",
+      [name, description, id]
     );
     res.json({ message: "Room updated" });
   } catch (error) {
@@ -43,7 +59,7 @@ const updateRoom = async (req, res) => {
 const deleteRoom = async (req, res) => {
   const { id } = req.params;
   try {
-    await db.query("DELETE FROM Rooms WHERE room_id = ?", [id]);
+    await db.query("Update rooms set status = ? where room_id = ?", [0, id]);
     res.json({ message: "Room deleted" });
   } catch (error) {
     res.status(500).json({ error: error.message });

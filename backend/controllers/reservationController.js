@@ -2,8 +2,25 @@ const db = require('../config/db');
 
 // GET: Ambil semua reservasi
 const getAllReservations = async (req, res) => {
+    const { status, name } = req.query; 
+
     try {
-        const [reservations] = await db.query('SELECT * FROM Reservations');
+        let query = 'SELECT r.*, rm.name as room_name FROM reservations r inner join rooms rm on rm.room_id = r.room_id';
+        const params = [];
+
+        if (status) {
+            query += " WHERE r.status = ?";
+            params.push(status);
+        }
+
+        if (name) {
+            query += params.length > 0 ? " AND" : " WHERE";
+            query += " (rm.name LIKE ? OR r.reserver LIKE ?)";
+            
+            params.push(`%${name}%`);
+            params.push(`%${name}%`);
+        }
+        const [reservations] = await db.query(query, params);
         res.json(reservations);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -12,11 +29,12 @@ const getAllReservations = async (req, res) => {
 
 // POST: Tambah reservasi baru
 const createReservation = async (req, res) => {
-    const { user_id, room_id, start_time, end_time, status } = req.body;
+    const { reserver, room_id, start_time, reason, end_time } = req.body;
+    console.log(req.body);
     try {
         const [result] = await db.query(
-            'INSERT INTO Reservations (user_id, room_id, start_time, end_time, status) VALUES (?, ?, ?, ?, ?)',
-            [user_id, room_id, start_time, end_time, status]
+            'INSERT INTO reservations (room_id, start_time, end_time, status, reserver, purpose) VALUES (?, ?, ?, ?, ?, ?)',
+            [room_id, start_time, end_time, 'pending', reserver, reason]
         );
         res.json({ message: 'Reservation created', reservationId: result.insertId });
     } catch (error) {
@@ -27,11 +45,11 @@ const createReservation = async (req, res) => {
 // PUT: Update reservasi
 const updateReservation = async (req, res) => {
     const { id } = req.params;
-    const { start_time, end_time, status } = req.body;
+    const { status } = req.body;
     try {
         await db.query(
-            'UPDATE Reservations SET start_time = ?, end_time = ?, status = ? WHERE reservation_id = ?',
-            [start_time, end_time, status, id]
+            'UPDATE Reservations SET status = ? WHERE reservation_id = ?',
+            [status, id]
         );
         res.json({ message: 'Reservation updated' });
     } catch (error) {
