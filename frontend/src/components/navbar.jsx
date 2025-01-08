@@ -24,7 +24,7 @@ function Navbar({onActionClick}) {
 
           {/* Navigasi */}
           <div className="collapse navbar-collapse">
-            {role && <ul className="navbar-nav">
+            {(onActionClick == null) && <ul className="navbar-nav">
               <li className="nav-item">
                 <Link className="nav-link" to="/admin"> Dashboard </Link>
               </li>
@@ -39,7 +39,7 @@ function Navbar({onActionClick}) {
 
             {/* Tombol Logout */}
             {
-              role == 'admin' 
+              (onActionClick == null)
                 ? <button 
                   className="btn btn-danger ms-auto"
                   onClick={handleLogout}

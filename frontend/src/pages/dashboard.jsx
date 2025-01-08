@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/navbar';
+// import Navbar from '../components/navbar';
 import api from '../services/api';
 import './dashboard.css';
 import dayjs from 'dayjs';
