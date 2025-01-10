@@ -5,7 +5,7 @@ const getAllRooms = async (req, res) => {
   const { status, name } = req.query; 
 
   try {
-    let query = "SELECT * FROM Rooms";
+    let query = "SELECT * FROM rooms";
     const params = [];
 
     if (status) {
@@ -31,7 +31,7 @@ const createRoom = async (req, res) => {
   const { name, description } = req.body;
   try {
     const [result] = await db.query(
-      "INSERT INTO Rooms (name, description, status) VALUES (?, ?, ?)",
+      "INSERT INTO rooms (name, description, status) VALUES (?, ?, ?)",
       [name, description, 1]
     );
     res.json({ message: "Room created", roomId: result.insertId });
@@ -46,7 +46,7 @@ const updateRoom = async (req, res) => {
   const { name, description } = req.body;
   try {
     await db.query(
-      "UPDATE Rooms SET name = ?, description = ? WHERE room_id = ?",
+      "UPDATE rooms SET name = ?, description = ? WHERE room_id = ?",
       [name, description, id]
     );
     res.json({ message: "Room updated" });

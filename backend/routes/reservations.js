@@ -24,7 +24,7 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-router.get('/room-reservate', async (req, res) => {
+router.get('/room-reservation', async (req, res) => {
     const { room_id, date, reserver } = req.query; // Ambil filter dari query parameter
 
     try {
