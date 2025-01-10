@@ -50,7 +50,7 @@ function DetailPeminjaman() {
   const handleSave = () => {
     const id = reservation.reservation_id;
 
-    api.put(`/reservations/${id}`, {
+    api.put(`/reservation/${id}`, {
       status: formData.status
     }).then((response) => {
         navigate(-1);
